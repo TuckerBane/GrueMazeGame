@@ -13,6 +13,8 @@ public class CameraController : FFComponent {
     FFAction.ActionSequence movementSeq;
     FFAction.ActionSequence sizeSeq;
 
+
+    public Vector3 offset;
     public float SizeLeash = 2.5f;
     public float PositionLeash = 2.5f;
     public float MinCameraSize = 10.0f;
@@ -20,11 +22,19 @@ public class CameraController : FFComponent {
     public float AdjustmentTime = 0.6f;
 
 
+    private float saveHeight;
+
+    public Transform Camera;
+    public Transform Bounds;
+
     FFRef<float> RefCameraSize()
     {
-        return new FFRef<float>(() => GetComponent<Camera>().orthographicSize, (v) => { GetComponent<Camera>().orthographicSize = v; });
+        return new FFRef<float>(() => Camera.GetComponent<Camera>().orthographicSize, (v) => { Camera.GetComponent<Camera>().orthographicSize = v; });
     }
-
+    FFRef<Vector3> RefboundScale()
+    {
+        return new FFRef<Vector3>(() => Bounds.localScale, (v) => { Bounds.localScale = v; });
+    }
     // Use this for initialization
     void Start ()
     {
@@ -42,8 +52,12 @@ public class CameraController : FFComponent {
         { // get Average Position
             for(int i = 0; i < targets.Length; ++i)
             {
-                newAveragePos += targets[i].position;
-                
+                newAveragePos += new Vector3(
+                    targets[i].position.x,
+                    0,
+                    targets[i].position.z);
+
+
                 topRight.x = Mathf.Max(topRight.x, targets[i].position.x);
                 topRight.y = Mathf.Max(topRight.y, targets[i].position.y);
 
@@ -51,7 +65,8 @@ public class CameraController : FFComponent {
                 botLeft.y = Mathf.Min(botLeft.y, targets[i].position.y);
             }
             newAveragePos /= 3.0f;
-            newAveragePos.y = 10.0f;
+            newAveragePos.y += 10.0f;
+            newAveragePos += offset;
         }
         
         // Adjust Camera Position
@@ -71,9 +86,9 @@ public class CameraController : FFComponent {
         { // Update SizeSequence
             targetSize = cameraSize;
             Vector3 scaleSize = new Vector3(
-                targetSize / MinCameraSize,
-                targetSize / MinCameraSize,
-                targetSize / MinCameraSize);
+                1.0f + ((targetSize / MinCameraSize)-1)*2.0f,
+                1.0f + ((targetSize / MinCameraSize)-1)*2.0f,
+                1.0f + ((targetSize / MinCameraSize)-1)*2.0f);
 
             sizeSeq.ClearSequence();
             sizeSeq.Property(RefCameraSize(), targetSize, FFEase.E_SmoothEnd, AdjustmentTime);
