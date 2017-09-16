@@ -82,8 +82,6 @@ public class PlayerHUDController : FFComponent
         }
 
         { // listen to UI events
-            FFMessage<ActivatePlayer>.Connect(OnActivatePlayer);
-            FFMessage<DeactivatePlayer>.Connect(OnDeactivatePlayer);
             FFMessage<ShowPlayerControlsEvent>.Connect(OnShowPlayerControlsEvent);
             FFMessage<ShowCustomTextMessage>.Connect(OnShowCustomTextMessage);
             FFMessage<ShowCustomIconMessage>.Connect(OnShowCustomIconMessage);
@@ -93,8 +91,6 @@ public class PlayerHUDController : FFComponent
     {
 
         { // disconnect
-            FFMessage<ActivatePlayer>.Disconnect(OnActivatePlayer);
-            FFMessage<DeactivatePlayer>.Disconnect(OnDeactivatePlayer);
             FFMessage<ShowPlayerControlsEvent>.Disconnect(OnShowPlayerControlsEvent);
             FFMessage<ShowCustomTextMessage>.Disconnect(OnShowCustomTextMessage);
             FFMessage<ShowCustomIconMessage>.Disconnect(OnShowCustomIconMessage);
@@ -130,23 +126,6 @@ public class PlayerHUDController : FFComponent
             1.2f,
             new Color(1.0f, 1.0f, 1.0f, 1.0f),
             new Color(1.0f, 1.0f, 1.0f, 0.0f));
-    }
-    private void OnActivatePlayer(ActivatePlayer e)
-    {
-        ShowTextNotification("!!! PLAYER ACTIVATED !!!",
-            4.8f,
-            new Color(0.8f, 0.8f, 0.5f, 1.0f),
-            new Color(0.8f, 0.8f, 0.3f, 0.0f));
-        ShowFullScreenNotification(ActivatePlayerSprite,
-            8.0f,
-            new Color(1.0f, 1.0f, 1.0f, 1.0f),
-            new Color(1.0f, 1.0f, 0.5f, 0.0f));
-
-
-        PlayAudioClip(ActivatePlayerAudio);
-    }
-    private void OnDeactivatePlayer(DeactivatePlayer e)
-    {
     }
 
     #endregion
