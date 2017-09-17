@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System;
 /*
  * This is an example script which shows how
  * you might make a comic reader script to move
@@ -10,7 +10,8 @@ using System.Collections;
 
 public class ExComicController : FFComponent {
 
-    FFAction.ActionSequence seq;
+    FFAction.ActionSequence movementSeq;
+    FFAction.ActionSequence audioSeq;
 
     float distAlongPath = 0;
 
@@ -20,13 +21,25 @@ public class ExComicController : FFComponent {
     int currentPointNumber = 0;
     public FFPath PathToFollow;
 
+    [Serializable]
+   public struct AudioCue
+    {
+        public float delay;
+        public AudioClip clip;
+    }
+
+
+    public AudioCue[] pathPointAudioClip;
+
 	// Use this for initialization
 	void Start () {
         if(PathToFollow != null && PathToFollow.points.Length > 1)
         {
-            seq = action.Sequence();
+            movementSeq = action.Sequence();
+            audioSeq = action.Sequence();
+
             transform.position = PathToFollow.PointAlongPath(PathToFollow.LengthAlongPathToPoint(currentPointNumber));
-            seq.Call(WaitForInput);
+            movementSeq.Call(WaitForInput);
         }
         else
         {
@@ -35,7 +48,6 @@ public class ExComicController : FFComponent {
             else
                 Debug.Log("EXComicController has no path to follow");
         }
-
 	}
 
     // Move forward state
@@ -46,7 +58,7 @@ public class ExComicController : FFComponent {
         {
             transform.position = PathToFollow.PointAlongPath(lengthToNextPoint); // goto point
 
-            seq.Call(WaitForInput); // waitForInput
+            movementSeq.Call(WaitForInput); // waitForInput
             return;
         }
         else // keep moving along path
@@ -55,8 +67,8 @@ public class ExComicController : FFComponent {
         }
 
         distAlongPath += Time.deltaTime * ComicCameraSpeed;
-        seq.Sync();
-        seq.Call(MoveForward);
+        movementSeq.Sync();
+        movementSeq.Call(MoveForward);
     }
 
     // Move Backward state
@@ -66,7 +78,7 @@ public class ExComicController : FFComponent {
         if (distAlongPath <= lengthToPrevPoint) // reached begining
         {
             transform.position = PathToFollow.PointAlongPath(lengthToPrevPoint); // goto point
-            seq.Call(WaitForInput); // waitForInput
+            movementSeq.Call(WaitForInput); // waitForInput
             return;
         }
         else // keep moving along path
@@ -75,35 +87,76 @@ public class ExComicController : FFComponent {
         }
 
         distAlongPath -= Time.deltaTime * ComicCameraSpeed;
-        seq.Sync();
-        seq.Call(MoveBackward);
+        movementSeq.Sync();
+        movementSeq.Call(MoveBackward);
     }
 
     // Wait For Input State
     void WaitForInput()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow))  // go forwards
+        var goForard =
+            Input.GetButtonUp("A" + 1) ||
+            Input.GetButtonUp("A" + 2) ||
+            Input.GetButtonUp("A" + 3) ||
+            Input.GetKeyDown(KeyCode.RightArrow);
+
+        if (goForard)  // go forwards
         {
             if (currentPointNumber < PathToFollow.points.Length)
             {
                 ++currentPointNumber;
-                seq.Call(MoveForward);
+                movementSeq.Call(MoveForward);
+
+                // Play Audio Clip
+                if(currentPointNumber < pathPointAudioClip.Length &&
+                   pathPointAudioClip[currentPointNumber].clip != null)
+                {
+                    if(pathPointAudioClip[currentPointNumber].delay != 0.0f)
+                    {
+                        audioSeq.Delay(pathPointAudioClip[currentPointNumber].delay);
+                        audioSeq.Sync();
+                    }
+                    audioSeq.Call(PlayAudioClipAtPointIndex);
+                }
                 return;
+            }
+            else // finished Path, Goto Next level
+            {
+                // @ TODO
+
+
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow))  // go backwards
+
+        var gobackward=
+            Input.GetButtonUp("B" + 1) ||
+            Input.GetButtonUp("B" + 2) ||
+            Input.GetButtonUp("B" + 3) ||
+            Input.GetKeyDown(KeyCode.RightArrow);
+
+        if (gobackward)  // go backwards
         {
             if (currentPointNumber > 0)
             {
                 --currentPointNumber;
-                seq.Call(MoveBackward);
+                movementSeq.Call(MoveBackward);
                 return;
             }
         }
 
-        seq.Sync();
-        seq.Call(WaitForInput);
+        movementSeq.Sync();
+        movementSeq.Call(WaitForInput);
+    }
+
+    void PlayAudioClipAtPointIndex()
+    {
+        var audioSrc = GetComponent<AudioSource>();
+        if (currentPointNumber < pathPointAudioClip.Length &&
+           pathPointAudioClip[currentPointNumber].clip != null)
+        {
+            audioSrc.PlayOneShot(pathPointAudioClip[currentPointNumber].clip);
+        }
     }
 	
 }

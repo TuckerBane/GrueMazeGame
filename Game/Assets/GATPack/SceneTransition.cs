@@ -1,9 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System;
+
+struct TriggerFade
+{
+}
 
 // This is the controller of the splace screen object
-public class SplashScreenController : FFComponent {
+public class SceneTransition : FFComponent {
 
     public float OpenFadeTime;
     public float PreFadeTime;
@@ -12,10 +17,16 @@ public class SplashScreenController : FFComponent {
 
     public string LevelToLoad = "Level_01";
     
+    public enum FadeTrigger
+    {
+        KeyPress,
+        Trigger,
+    }
     private FFAction.ActionSequence FadeSequence;
+    public FadeTrigger trigger;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 
         // Initialize
         {
@@ -29,19 +40,43 @@ public class SplashScreenController : FFComponent {
                 new Color(ffSpriteColor.Val.r, ffSpriteColor.Val.g, ffSpriteColor.Val.b, 0.0f),
                 FFEase.E_SmoothStart,
                 OpenFadeTime);
-
-
+            
             FadeSequence.Sync();
             FadeSequence.Delay(PreFadeTime);
             FadeSequence.Sync();
-            InputUpdate();
+
+            if(trigger == FadeTrigger.KeyPress)
+            {
+                InputUpdate();
+            }
+            else
+            {
+                FFMessage<TriggerFade>.Connect(OnTriggerFade);
+            }
         }
 	}
+
+    private void OnDestroy()
+    {
+        FFMessage<TriggerFade>.Disconnect(OnTriggerFade);
+    }
+
+    private void OnTriggerFade(TriggerFade e)
+    {
+        FadeToNextLevel();
+    }
 
     // self queuing message
     void InputUpdate()
     {
-        if(Input.anyKey)
+
+        var fadeToNextLevel =
+            Input.GetButtonUp("A" + 1) ||
+            Input.GetButtonUp("A" + 2) ||
+            Input.GetButtonUp("A" + 3) ||
+            Input.anyKey;
+
+        if (fadeToNextLevel)
         {
             FadeToNextLevel();
         }
@@ -67,8 +102,7 @@ public class SplashScreenController : FFComponent {
         FadeSequence.Sync();
         FadeSequence.Call(LoadTransitionLevel);
     }
-
-
+    
     void LoadTransitionLevel()
     {
         SceneManager.LoadScene(LevelToLoad);
