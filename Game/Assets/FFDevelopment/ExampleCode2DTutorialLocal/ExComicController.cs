@@ -95,9 +95,9 @@ public class ExComicController : FFComponent {
     void WaitForInput()
     {
         var goForard =
+            Input.GetButtonUp("A" + 0) ||
             Input.GetButtonUp("A" + 1) ||
             Input.GetButtonUp("A" + 2) ||
-            Input.GetButtonUp("A" + 3) ||
             Input.GetKeyDown(KeyCode.RightArrow);
 
         if (goForard)  // go forwards
@@ -122,18 +122,17 @@ public class ExComicController : FFComponent {
             }
             else // finished Path, Goto Next level
             {
-                // @ TODO
-
-
+                TriggerFade tf;
+                FFMessage<TriggerFade>.SendToLocal(tf);
             }
         }
 
 
         var gobackward=
-            Input.GetButtonUp("B" + 1) ||
-            Input.GetButtonUp("B" + 2) ||
-            Input.GetButtonUp("B" + 3) ||
-            Input.GetKeyDown(KeyCode.RightArrow);
+            //Input.GetButtonUp("B" + 0) ||
+            //Input.GetButtonUp("B" + 1) ||
+            //Input.GetButtonUp("B" + 2) ||
+            Input.GetKeyDown(KeyCode.LeftArrow);
 
         if (gobackward)  // go backwards
         {
