@@ -22,7 +22,7 @@ static public class GameMath
 
     public static void PointObjAt2D(GameObject obj, SuperPos pos)
     {
-        DistanceBetween(obj, obj.transform);
+        //DistanceBetween(obj, obj.transform);
 
         Vector3 dir = UnitVectorBetween(obj, pos);
 
