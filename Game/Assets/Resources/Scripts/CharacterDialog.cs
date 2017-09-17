@@ -18,15 +18,21 @@ public class CharacterDialog : MonoBehaviour
                 Custom,
             }
             public Type type;
-            public bool invert;
+            public bool invertCondition;
             public string identifier;
+        }
+        [Serializable]
+        public struct Echo
+        {
+            public DialogManager.OratorNames orator;
+            public string text;
         }
 
         public bool recurring;
         public bool blocking;
         public bool interupting;
         public Condition[] condition;
-        public string[] echo;
+        public Echo[] conversation;
         public string[] sideEffects;
     }
 

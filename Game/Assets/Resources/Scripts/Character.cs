@@ -55,6 +55,17 @@ public struct LeaveArea
 {
     public Transform area;
 }
+
+
+
+struct CustomDialogOn
+{
+    public string tag;
+}
+struct CustomDialogOff
+{
+    public string tag;
+}
 #endregion
 
 
@@ -87,6 +98,15 @@ public class Character : FFComponent
         FFMessage<QueryLight>.SendToLocal(lightVal);
 
         return lightVal.out_intensity;
+    }
+
+    public Transform GetSpeachRoot()
+    {
+        return transform.Find("SpeechRoot");
+    }
+    public SpeechController GetSpeechController()
+    {
+        return transform.Find("SpeechRoot").GetComponent<SpeechController>();
     }
 
     //@ TODO uncomment the player controller
