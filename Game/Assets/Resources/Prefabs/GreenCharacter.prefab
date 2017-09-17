@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 54314303769029638}
   - component: {fileID: 114788785858211808}
   - component: {fileID: 114187132377092594}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GreenCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4139735262380338}
   - component: {fileID: 108116919230365966}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1187485568470516}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.98, y: 1.03, z: -13.36}
+  m_LocalPosition: {x: 85.4, y: 1.03, z: -0.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4139735262380338}
@@ -144,7 +144,7 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -259,6 +259,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  mStunTime: 0
+  mLightIsOn: 0
   mControllerNumber: 2
   controllerX: 0
   controllerY: 0

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ControllerPlayerController : FFComponent {
+    public float timeOn = 1.0f;
+    public float timeOff = 0.5f;
     public float testGrueVis = 0.0f;
     public float accelerationSpeed = 10.0f;
     public float maxSpeed = 10.0f;
@@ -47,14 +49,14 @@ public class ControllerPlayerController : FFComponent {
     void ChangeLightOn()
     {
         mLightIsOn = true;
-        stuffImDoing.Property(LightValue(), 100, mLightCurve, 4.0f);
+        stuffImDoing.Property(LightValue(), 100, mLightCurve, timeOn);
         stuffImDoing.Sync();
         stuffImDoing.Call(ChangeLightOff);
         stuffImDoing.Sync();
     }
     void ChangeLightOff()
     {
-        stuffImDoing.Property(LightValue(), 0, mLightOffCurve, 4.0f);
+        stuffImDoing.Property(LightValue(), 0, mLightOffCurve, timeOff);
         stuffImDoing.Sync();
         stuffImDoing.Call(CheckAButton);
         stuffImDoing.Sync();
