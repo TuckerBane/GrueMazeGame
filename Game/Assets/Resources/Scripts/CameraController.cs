@@ -86,9 +86,9 @@ public class CameraController : FFComponent {
         { // Update SizeSequence
             targetSize = cameraSize;
             Vector3 scaleSize = new Vector3(
-                1.0f + ((targetSize / MinCameraSize)-1)*2.0f,
-                1.0f + ((targetSize / MinCameraSize)-1)*2.0f,
-                1.0f + ((targetSize / MinCameraSize)-1)*2.0f);
+                1.0f + ((targetSize / MinCameraSize)-1),
+                1.0f + ((targetSize / MinCameraSize)-1),
+                1.0f + ((targetSize / MinCameraSize)-1));
 
             sizeSeq.ClearSequence();
             sizeSeq.Property(RefCameraSize(), targetSize, FFEase.E_SmoothEnd, AdjustmentTime);

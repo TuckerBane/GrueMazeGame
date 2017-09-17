@@ -148,7 +148,7 @@ Transform:
   m_GameObject: {fileID: 1076287956679964}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: 0, z: -0}
-  m_LocalScale: {x: 1, y: 3, z: 25}
+  m_LocalScale: {x: 1, y: 3, z: 45}
   m_Children: []
   m_Father: {fileID: 4486794769432902}
   m_RootOrder: 0
@@ -161,7 +161,7 @@ Transform:
   m_GameObject: {fileID: 1830996944067122}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -1.069, z: 0}
-  m_LocalScale: {x: 3, y: 1, z: 25}
+  m_LocalScale: {x: 3, y: 1, z: 45}
   m_Children: []
   m_Father: {fileID: 4486794769432902}
   m_RootOrder: 2
@@ -174,7 +174,7 @@ Transform:
   m_GameObject: {fileID: 1218120675945958}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.05, z: -0}
-  m_LocalScale: {x: 3, y: 1.0000005, z: 25}
+  m_LocalScale: {x: 3, y: 1.0000005, z: 45}
   m_Children: []
   m_Father: {fileID: 4486794769432902}
   m_RootOrder: 3
@@ -231,7 +231,7 @@ Transform:
   m_GameObject: {fileID: 1259473611378184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 3, z: 25}
+  m_LocalScale: {x: 1, y: 3, z: 45}
   m_Children: []
   m_Father: {fileID: 4486794769432902}
   m_RootOrder: 1
@@ -243,7 +243,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1897236490921292}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 10, z: -16.78}
+  m_LocalPosition: {x: -2.8221104, y: 20, z: -23.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4641134065628536}
@@ -298,7 +298,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0.25}
 --- !u!65 &65075798479312594
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -310,7 +310,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0.25}
 --- !u!65 &65418631843807528
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -322,7 +322,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0.25}
 --- !u!65 &65809804777730698
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -334,7 +334,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0.25}
 --- !u!81 &81931315372550388
 AudioListener:
   m_ObjectHideFlags: 1
@@ -364,7 +364,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  offset: {x: 0, y: 1, z: -2}
+  offset: {x: 0, y: 1, z: -5.5}
   SizeLeash: 0
   PositionLeash: 0
   MinCameraSize: 5.5

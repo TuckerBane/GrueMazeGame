@@ -22,6 +22,9 @@ public class CharacterDialog : MonoBehaviour
             public string identifier;
         }
 
+        public bool recurring;
+        public bool blocking;
+        public bool interupting;
         public Condition[] condition;
         public string[] echo;
         public string[] sideEffects;
