@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class LightChecker : MonoBehaviour {
 
+    public GameObject testTargetGrue;
+    public float testHitNum = -1337.0f;
+
     public float mMaxRange = 10.0f;
     public float mFullyEffectiveRange = 5.0f;
     public bool mIsCone = false;
     public float mConeAngleDegree = 30.0f;
-    public float testHitNum = -1337.0f;
+
     public float angle = 0.0f;
 
-    public GameObject targetGrue;
+
 
 
 	// Use this for initialization
@@ -21,7 +24,7 @@ public class LightChecker : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        testHitNum = GetLightLevel(targetGrue.transform);
+        testHitNum = GetLightLevel(testTargetGrue.transform);
 	}
 
     float GetLightLevel(Transform grueTrans )
@@ -48,7 +51,9 @@ public class LightChecker : MonoBehaviour {
         if (mIsCone)
         {
             Vector3 toGrue = GameMath.UnitVectorBetween(transform, grueTrans);
+            toGrue.y = 0;
             Vector3 forward = transform.forward;
+            forward.y = 0;
 
             float angleBetweenDegree = Mathf.Acos(Vector3.Dot(forward, toGrue)) * 180 / Mathf.PI;
             angle = angleBetweenDegree;
