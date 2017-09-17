@@ -40,6 +40,10 @@ public class CameraController : FFComponent {
     {
         movementSeq = action.Sequence();
         sizeSeq = action.Sequence();
+
+        Update();
+        sizeSeq.TimeWarpAhead(1.6f);
+        movementSeq.TimeWarpAhead(1.6f);
     }
 
 	// Update is called once per frame
@@ -65,7 +69,9 @@ public class CameraController : FFComponent {
                 botLeft.y = Mathf.Min(botLeft.y, targets[i].position.y);
             }
             newAveragePos /= 3.0f;
-            newAveragePos.y += 10.0f;
+            var forward = Vector3.Normalize(Camera.transform.forward);
+
+            newAveragePos += -forward * 35.0f;
             newAveragePos += offset;
         }
         
@@ -80,7 +86,7 @@ public class CameraController : FFComponent {
         float cameraSize = Mathf.Clamp(
             Mathf.Max(topRight.x - botLeft.x, topRight.y - botLeft.y),
             MinCameraSize,
-            MaxCameraSize);
+            MaxCameraSize) * 0.6f;
 
         if (Mathf.Abs(cameraSize - targetSize) > SizeLeash)
         { // Update SizeSequence

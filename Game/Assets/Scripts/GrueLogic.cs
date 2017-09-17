@@ -37,7 +37,7 @@ public class GrueLogic : FFComponent
         mPlayers = FindObjectsOfType<ControllerPlayerController>();
         mAllLights = FindObjectsOfType<LightChecker>();
         mTarget = GetTarget();
-	}
+    }
 	
     float TotalLight()
     {
@@ -84,7 +84,7 @@ public class GrueLogic : FFComponent
             else
             {
                 //un grueize
-                mTarget.GetComponent<Collider>().isTrigger = false;
+                GetComponent<Collider>().isTrigger = false;
                 mConvertMaybe.ClearSequence();
                 // change model back to normal
                 Destroy(this);

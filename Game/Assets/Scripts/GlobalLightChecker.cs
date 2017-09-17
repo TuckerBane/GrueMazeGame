@@ -8,6 +8,7 @@ public class GlobalLightChecker : MonoBehaviour {
 
     public float GetTotalLightLevel(Transform otherObjecttransform)
     {
+        mAllLights = FindObjectsOfType<LightChecker>();
         float light = 0;
         foreach (LightChecker ligity in mAllLights)
         {
@@ -23,6 +24,6 @@ public class GlobalLightChecker : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        mAllLights = FindObjectsOfType<LightChecker>();
+        
     }
 }

@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4635897175838358}
   - component: {fileID: 108707443269375562}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 114809753233270114}
   - component: {fileID: 114835817773731008}
   - component: {fileID: 114419024011249132}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RedCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1723170005132638}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.18, y: 1.076, z: -10.98}
+  m_LocalPosition: {x: 32.4, y: 1.076, z: -21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4635897175838358}
@@ -145,7 +145,7 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -257,6 +257,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  mStunTime: 0
+  mLightIsOn: 0
   mControllerNumber: 0
   controllerX: 0
   controllerY: 0
