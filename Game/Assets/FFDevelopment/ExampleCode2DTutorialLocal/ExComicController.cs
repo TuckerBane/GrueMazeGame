@@ -48,7 +48,10 @@ public class ExComicController : FFComponent {
             else
                 Debug.Log("EXComicController has no path to follow");
         }
-	}
+
+
+        PlayAudio();
+    }
 
     // Move forward state
     void MoveForward()
@@ -106,18 +109,7 @@ public class ExComicController : FFComponent {
             {
                 ++currentPointNumber;
                 movementSeq.Call(MoveForward);
-
-                // Play Audio Clip
-                if(currentPointNumber < pathPointAudioClip.Length &&
-                   pathPointAudioClip[currentPointNumber].clip != null)
-                {
-                    if(pathPointAudioClip[currentPointNumber].delay != 0.0f)
-                    {
-                        audioSeq.Delay(pathPointAudioClip[currentPointNumber].delay);
-                        audioSeq.Sync();
-                    }
-                    audioSeq.Call(PlayAudioClipAtPointIndex);
-                }
+                PlayAudio();
                 return;
             }
             else // finished Path, Goto Next level
@@ -140,6 +132,7 @@ public class ExComicController : FFComponent {
             {
                 --currentPointNumber;
                 movementSeq.Call(MoveBackward);
+                PlayAudio();
                 return;
             }
         }
@@ -148,6 +141,20 @@ public class ExComicController : FFComponent {
         movementSeq.Call(WaitForInput);
     }
 
+    void PlayAudio()
+    {
+        // Play Audio Clip
+        if (currentPointNumber < pathPointAudioClip.Length &&
+           pathPointAudioClip[currentPointNumber].clip != null)
+        {
+            if (pathPointAudioClip[currentPointNumber].delay != 0.0f)
+            {
+                audioSeq.Delay(pathPointAudioClip[currentPointNumber].delay);
+                audioSeq.Sync();
+            }
+            audioSeq.Call(PlayAudioClipAtPointIndex);
+        }
+    }
     void PlayAudioClipAtPointIndex()
     {
         var audioSrc = GetComponent<AudioSource>();
