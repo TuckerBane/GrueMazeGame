@@ -11,6 +11,9 @@ public class ControllerPlayerController : FFComponent {
     public AnimationCurve mLightOffCurve;
     private Rigidbody myRidigBody;
 
+    public float mStunTime = 0.0f;
+
+    public bool mLightIsOn = false;
     public int mControllerNumber = 0;
     //public Color mColor;
     public float controllerX;
@@ -26,12 +29,13 @@ public class ControllerPlayerController : FFComponent {
         transform.Find("Light").GetComponent<Light>().intensity = 50 * 0.25f;
         stuffImDoing = action.Sequence();
         stuffImDoing.Call(CheckAButton);
+        stuffImDoing.Sync();
     }
 
     void CheckAButton()
     {
         mLightIsOn = false;
-        if (Input.GetButtonUp("A" + mControllerNumber))
+        if (Input.GetButtonUp("A" + mControllerNumber) && mStunTime <= 0.0f && !GetComponent<GrueLogic>())
         {
             ChangeLightOn();
             return;
@@ -40,19 +44,21 @@ public class ControllerPlayerController : FFComponent {
         stuffImDoing.Sync();
     }
 
-    bool mLightIsOn = false;
     void ChangeLightOn()
     {
         mLightIsOn = true;
         stuffImDoing.Property(LightValue(), 100, mLightCurve, 4.0f);
         stuffImDoing.Sync();
         stuffImDoing.Call(ChangeLightOff);
+        stuffImDoing.Sync();
     }
     void ChangeLightOff()
     {
         stuffImDoing.Property(LightValue(), 0, mLightOffCurve, 4.0f);
         stuffImDoing.Sync();
         stuffImDoing.Call(CheckAButton);
+        stuffImDoing.Sync();
+        mLightIsOn = false;
     }
 
        FFRef<float> LightValue()
@@ -62,21 +68,19 @@ public class ControllerPlayerController : FFComponent {
 	
 	// Update is called once per frame
 	void Update () {
-        Vector3 movementVector = new Vector3();
 
-        /*
-        stuffImDoing.Call(checkAButton);
+        if (mStunTime >= 0.0f)
+            mStunTime -= Time.deltaTime;
 
+        if (mStunTime > 0.0f)
+        {
+            mLightIsOn = false;
+            transform.Find("Light").GetComponent<Light>().intensity = 0.0f;
+            myRidigBody.velocity = Vector3.zero;
+            return;
+        }
             
-        stuffImDoing.Call(LightBeOn);
-        stuffImDoing.Delay(LightOnTime);
-        stuffImDoing.Call(LightBeOff);
-        stuffImDoing.Delay(cooldownTime);
-        stuffImDoing.Call(TrueizemCanButton);
-        stuffImDoing.Sync();
-        stuffImDoing.Delay(cooldownTime);
-        stuffImDoing.Sync();
-        */
+        Vector3 movementVector = new Vector3();
 
         switch (mControllerNumber)
         {

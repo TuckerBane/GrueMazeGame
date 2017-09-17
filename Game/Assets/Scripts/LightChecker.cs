@@ -17,35 +17,35 @@ public class LightChecker : MonoBehaviour {
 
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    public void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        testHitNum = GetLightLevel(testTargetGrue.transform);
+
+    // Update is called once per frame
+    public void Update () {
+        //testHitNum = GetLightLevel(testTargetGrue.transform);
 	}
 
-    float GetLightLevel(Transform grueTrans )
+    public float GetLightLevel(Transform grueTrans )
     {
+        if (GetComponent<GrueLogic>() || GetComponent<ControllerPlayerController>().mStunTime > 0.0f)
+            return 0.0f;
+
         float distance = (grueTrans.position - transform.position).magnitude;
         if(distance > mMaxRange)
-        {
             return 0.0f;
-        }
+
         RaycastHit hit = new RaycastHit();
         Vector3 start = transform.position;
         Vector3 direction = (grueTrans.position - transform.position).normalized;
+
         if (!Physics.Raycast(start, direction, out hit, mMaxRange) )
-        {
             return 0.0f;
-        }
+
         // we hit something before the Grue
         if(hit.collider.gameObject != grueTrans.gameObject)
-        {
             return 0.0f;
-        }
 
         //shape check
         if (mIsCone)
@@ -58,17 +58,16 @@ public class LightChecker : MonoBehaviour {
             float angleBetweenDegree = Mathf.Acos(Vector3.Dot(forward, toGrue)) * 180 / Mathf.PI;
             angle = angleBetweenDegree;
             if (angleBetweenDegree > (mConeAngleDegree / 2))
-            {
                 return 0.0f;
-            }
         }
 
+        float baseLight;
         if (distance <= mFullyEffectiveRange)
-        {
-            return 1.0f;
-        }
+            baseLight = 1.0f;
+        else
+            baseLight = (mMaxRange - distance) / (mMaxRange - mFullyEffectiveRange);
 
-        return (mMaxRange - distance) / (mMaxRange - mFullyEffectiveRange);
+        return baseLight * (GetComponent<ControllerPlayerController>().mLightIsOn ? 1.0f : (1.0f/10.0f));
     }
 
 }

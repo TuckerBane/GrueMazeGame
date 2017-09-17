@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1895557843056274}
+  m_IsPrefabParent: 1
+--- !u!1 &1895557843056274
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4649845782121440}
+  - component: {fileID: 114064819148039668}
+  m_Layer: 0
+  m_Name: MothershipPath
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4649845782121440
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1895557843056274}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12.44, y: 0.5, z: -41.27}
+  m_LocalScale: {x: 5.2133465, y: 5.213345, z: 5.213345}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114064819148039668
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1895557843056274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c973d364d0d7f4fbcc4ae707d5ea90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InterpolationType: 1
+  Circuit: 1
+  DynamicPath: 0
+  SmoothBetweenPoints: 0
+  ModifyAndDraw: 0
+  points:
+  - {x: 4.987816, y: 0, z: 7.103233}
+  - {x: 5.027817, y: 0, z: 8.383232}
+  - {x: 7.299816, y: 0, z: 8.900232}
+  - {x: 11.767818, y: 0, z: 6.5632324}
+  - {x: 10.897817, y: 0, z: 4.4532337}
+  - {x: 8.327816, y: 0, z: 2.753233}
+  - {x: 1.6278191, y: 0, z: 1.013233}
+  - {x: -0.37218466, y: 0, z: 6.663233}
+  - {x: 2.2978172, y: 0, z: 12.973231}
+  - {x: 6.837818, y: 0, z: 13.283231}
+  - {x: 7.299816, y: 0, z: 8.900232}
+  linearDistanceAlongPath:
+  - 0
+  - 1.2806242
+  - 3.6107037
+  - 8.652987
+  - 10.935309
+  - 14.016689
+  - 20.93894
+  - 26.93248
+  - 33.784122
+  - 38.334694
+  - 42.741974
+  - 45.670208
