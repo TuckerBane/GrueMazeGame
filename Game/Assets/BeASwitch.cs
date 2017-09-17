@@ -37,4 +37,19 @@ public class BeASwitch : MonoBehaviour {
         OnCollision(collision.collider.gameObject);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        OnCollision(other.gameObject);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        OnCollision(other.gameObject);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        OnCollision(other.gameObject);
+    }
+
 }

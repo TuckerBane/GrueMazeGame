@@ -29,8 +29,11 @@ public class LightChecker : MonoBehaviour {
 
     public float GetLightLevel(Transform grueTrans )
     {
-        if (GetComponent<GrueLogic>() || GetComponent<ControllerPlayerController>().mStunTime > 0.0f)
+        if (GetComponent<ControllerPlayerController>() && GetComponent<ControllerPlayerController>().mFlareDropper)
             return 0.0f;
+
+        if (GetComponent<GrueLogic>() || (GetComponent<ControllerPlayerController>() && GetComponent<ControllerPlayerController>().mStunTime > 0.0f) )
+        return 0.0f;
 
         float distance = (grueTrans.position - transform.position).magnitude;
         if(distance > mMaxRange)
@@ -67,7 +70,12 @@ public class LightChecker : MonoBehaviour {
         else
             baseLight = (mMaxRange - distance) / (mMaxRange - mFullyEffectiveRange);
 
-        return baseLight * (GetComponent<ControllerPlayerController>().mLightIsOn ? 1.0f : (1.0f/10.0f));
+        if(GetComponent<ControllerPlayerController>() && GetComponent<ControllerPlayerController>().mLightIsOn)
+        {
+            baseLight *= (1.0f / 10.0f);
+        }
+
+        return baseLight;
     }
 
 }
