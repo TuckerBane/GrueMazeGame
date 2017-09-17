@@ -323,7 +323,7 @@ Transform:
   m_GameObject: {fileID: 125878041}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 25, y: 6, z: 1}
+  m_LocalScale: {x: 35, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 257061350}
   m_RootOrder: 1
@@ -1563,7 +1563,7 @@ Transform:
   m_GameObject: {fileID: 950906307}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 25, y: 6, z: 1}
+  m_LocalScale: {x: 35, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 1757760080}
   m_RootOrder: 1
@@ -2708,7 +2708,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1696044949}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.51, y: 4.23, z: -7.54}
+  m_LocalPosition: {x: 3.97, y: 1.16, z: -7.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 937959780}
@@ -2940,7 +2940,7 @@ MonoBehaviour:
   - name: 3
     trans: {fileID: 1426111391}
   averageLengthPerWord: 5
-  displayTimePerWord: 1.5833334
+  displayTimePerWord: 0.5
   minDisplayTime: 1.45
 --- !u!4 &1858379582
 Transform:
@@ -3106,22 +3106,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogSets:
-  - recurring: 0
-    blocking: 0
-    interupting: 0
-    condition:
+  - condition:
     - type: 1
       invertCondition: 0
       identifier: Hall
     conversation:
     - orator: 1
       text: Wow, what a hall
+    - orator: 2
+      text: :SLDkfj
+    - orator: 1
+      text: Hey
+    - orator: 3
+      text: YOUOIUODIUFPOIDSUFI
     sideEffects:
     - Madness
-  - recurring: 0
-    blocking: 0
-    interupting: 0
-    condition:
+  - condition:
     - type: 2
       invertCondition: 0
       identifier: Madness
@@ -3153,7 +3153,7 @@ Transform:
   m_GameObject: {fileID: 1993412737}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 25, y: 6, z: 1}
+  m_LocalScale: {x: 35, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 937959780}
   m_RootOrder: 1

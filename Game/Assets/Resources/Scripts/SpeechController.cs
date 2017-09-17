@@ -23,9 +23,34 @@ public class SpeechController : FFComponent
 
     public AnimationCurve SpeechBubbleTransition;
 
+    
+    class TextItem
+    {
+        public FFAction.ActionSequence dialogSeq;
+        public string text;
+        public float time;
+    }
+
+
     public void SayThing(FFAction.ActionSequence dialogSeq, string text, float time)
     {
-        transform.Find("Text").GetComponent<TextMesh>().text = text;
+        Debug.Log("Say Thing");
+
+        TextItem item = new TextItem();
+        item.dialogSeq = dialogSeq;
+        item.text = text;
+        item.time = time;
+
+        dialogSeq.Sync();
+        dialogSeq.Call(Say, item);
+    }
+
+    void Say(object textObj)
+    {
+        TextItem item = (TextItem)textObj;
+
+        // Get text Item to set text
+        transform.Find("Text").GetComponent<TextMesh>().text = item.text;
 
         var textColor = TextColor();
         var bubbleColor = BubbleColor();
@@ -36,10 +61,9 @@ public class SpeechController : FFComponent
         newBubbleColor.a = 1.0f;
 
         // Set starting color
-        dialogSeq.Property(bubbleColor, newBubbleColor, SpeechBubbleTransition, time);
-        dialogSeq.Property(textColor, newTextColor, SpeechBubbleTransition, time);
-
-        dialogSeq.Sync();
+        item.dialogSeq.Property(bubbleColor, newBubbleColor, SpeechBubbleTransition, item.time);
+        item.dialogSeq.Property(textColor, newTextColor, SpeechBubbleTransition, item.time);
+        item.dialogSeq.Sync();
     }
 
 

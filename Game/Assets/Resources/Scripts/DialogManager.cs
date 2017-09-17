@@ -49,8 +49,6 @@ public class DialogManager : FFComponent
             foreach(Transform child in transform)
             {
                 var cd = child.GetComponent<CharacterDialog>();
-                AddCharacterDialog(cd);
-
                 if (cd != null)
                 {
                     AddCharacterDialog(cd);
@@ -168,15 +166,16 @@ public class DialogManager : FFComponent
     
     void UpdateDialog()
     {
-        foreach(var dialog in gameDialog)
+        for(int i = 0; i < gameDialog.Count; ++i)
         {
-            if(DialogConditionsTrue(dialog))
+            if(DialogConditionsTrue(gameDialog[i]))
             {
-                QueueDialog(dialog);
-                QueueSideEffects(dialog);
+                Debug.Log("Dialog " + i);
+                QueueDialog(gameDialog[i]);
+                QueueSideEffects(gameDialog[i]);
+
+                gameDialog.RemoveAt(i);
             }
-
-
         }
 
         updateDialogSeq.Delay(0.25f);
@@ -223,6 +222,8 @@ public class DialogManager : FFComponent
     {
         for(int i = 0; i < dialog.conversation.Length; ++i)
         {
+            Debug.Log("Conversation " + i);
+
             var echoDisplayTime = Mathf.Max(minDisplayTime, ((float)dialog.conversation[i].text.Length / averageLengthPerWord) * displayTimePerWord);
             var orator = dialog.conversation[i].orator;
             var text = dialog.conversation[i].text;
@@ -238,10 +239,10 @@ public class DialogManager : FFComponent
     {
         for (int i = 0; i < dialog.sideEffects.Length; ++i)
         {
+            dialogSequence.Sync();
             dialogSequence.Call(SendCustomDialogEvent, dialog.sideEffects[i]);
         }
     }
-
     void SendCustomDialogEvent(object text)
     {
         var box = FFMessageBoard<CustomDialogOn>.Box((string)text);
