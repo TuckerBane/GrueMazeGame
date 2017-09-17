@@ -1,0 +1,266 @@
+fileFormatVersion: 2
+guid: d52d4c2d702dda845818cadb68607015
+timeCreated: 1505684223
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: Arm_Mesh_grp
+    100002: Arm_Mesh_grp1
+    100004: character_01Mesh
+    100006: //RootNode
+    100008: character_model:Character_02
+    100010: character_model:chest
+    100012: character_model:pelvis
+    100014: character_model:torso_mesh
+    100016: Character_Rig_01_Head
+    100018: Character_Rig_01_Hips
+    100020: Character_Rig_01_HipsTranslation
+    100022: Character_Rig_01_LeftArm
+    100024: Character_Rig_01_LeftFoot
+    100026: Character_Rig_01_LeftForeArm
+    100028: Character_Rig_01_LeftHand
+    100030: Character_Rig_01_LeftLeg
+    100032: Character_Rig_01_LeftShoulder
+    100034: Character_Rig_01_LeftToeBase
+    100036: Character_Rig_01_LeftUpLeg
+    100038: Character_Rig_01_Neck
+    100040: Character_Rig_01_Reference
+    100042: Character_Rig_01_RightArm
+    100044: Character_Rig_01_RightFoot
+    100046: Character_Rig_01_RightForeArm
+    100048: Character_Rig_01_RightHand
+    100050: Character_Rig_01_RightLeg
+    100052: Character_Rig_01_RightShoulder
+    100054: Character_Rig_01_RightToeBase
+    100056: Character_Rig_01_RightUpLeg
+    100058: Character_Rig_01_Spine
+    100060: Character_Rig_01_Spine1
+    100062: Head
+    100064: Leg_Mesh_grp
+    100066: Leg_Mesh_grp1
+    100068: Neck
+    100070: pCube3
+    100072: pCube3 1
+    100074: pCylinder2
+    100076: pCylinder2 1
+    100078: pCylinder3
+    100080: pCylinder3 1
+    100082: pCylinder4
+    100084: pCylinder4 1
+    100086: pCylinder5
+    100088: pCylinder5 1
+    100090: pCylinder6
+    100092: pSphere1
+    100094: pSphere10
+    100096: pSphere10 1
+    100098: pSphere11
+    100100: pSphere11 1
+    100102: pSphere2
+    100104: pSphere2 1
+    100106: pSphere5
+    100108: pSphere5 1
+    100110: pSphere7
+    100112: pSphere7 1
+    100114: pSphere8
+    100116: pSphere8 1
+    100118: pSphere9
+    100120: pSphere9 1
+    100122: torso_mesh_grp
+    400000: Arm_Mesh_grp
+    400002: Arm_Mesh_grp1
+    400004: character_01Mesh
+    400006: //RootNode
+    400008: character_model:Character_02
+    400010: character_model:chest
+    400012: character_model:pelvis
+    400014: character_model:torso_mesh
+    400016: Character_Rig_01_Head
+    400018: Character_Rig_01_Hips
+    400020: Character_Rig_01_HipsTranslation
+    400022: Character_Rig_01_LeftArm
+    400024: Character_Rig_01_LeftFoot
+    400026: Character_Rig_01_LeftForeArm
+    400028: Character_Rig_01_LeftHand
+    400030: Character_Rig_01_LeftLeg
+    400032: Character_Rig_01_LeftShoulder
+    400034: Character_Rig_01_LeftToeBase
+    400036: Character_Rig_01_LeftUpLeg
+    400038: Character_Rig_01_Neck
+    400040: Character_Rig_01_Reference
+    400042: Character_Rig_01_RightArm
+    400044: Character_Rig_01_RightFoot
+    400046: Character_Rig_01_RightForeArm
+    400048: Character_Rig_01_RightHand
+    400050: Character_Rig_01_RightLeg
+    400052: Character_Rig_01_RightShoulder
+    400054: Character_Rig_01_RightToeBase
+    400056: Character_Rig_01_RightUpLeg
+    400058: Character_Rig_01_Spine
+    400060: Character_Rig_01_Spine1
+    400062: Head
+    400064: Leg_Mesh_grp
+    400066: Leg_Mesh_grp1
+    400068: Neck
+    400070: pCube3
+    400072: pCube3 1
+    400074: pCylinder2
+    400076: pCylinder2 1
+    400078: pCylinder3
+    400080: pCylinder3 1
+    400082: pCylinder4
+    400084: pCylinder4 1
+    400086: pCylinder5
+    400088: pCylinder5 1
+    400090: pCylinder6
+    400092: pSphere1
+    400094: pSphere10
+    400096: pSphere10 1
+    400098: pSphere11
+    400100: pSphere11 1
+    400102: pSphere2
+    400104: pSphere2 1
+    400106: pSphere5
+    400108: pSphere5 1
+    400110: pSphere7
+    400112: pSphere7 1
+    400114: pSphere8
+    400116: pSphere8 1
+    400118: pSphere9
+    400120: pSphere9 1
+    400122: torso_mesh_grp
+    4300000: pSphere1
+    4300002: pSphere2
+    4300004: pCylinder2
+    4300006: pSphere7
+    4300008: pCylinder3
+    4300010: pSphere8
+    4300012: pCube3
+    4300014: pSphere5
+    4300016: pCylinder4
+    4300018: pSphere9
+    4300020: pCylinder5
+    4300022: pSphere10
+    4300024: pSphere11
+    4300026: pSphere2
+    4300028: pCube3
+    4300030: pSphere8
+    4300032: pCylinder3
+    4300034: pSphere7
+    4300036: pCylinder2
+    4300038: pSphere5
+    4300040: pCylinder4
+    4300042: pSphere9
+    4300044: pCylinder5
+    4300046: pSphere10
+    4300048: pSphere11
+    4300050: pCylinder6
+    4300052: Neck
+    4300054: character_model:chest
+    4300056: character_model:pelvis
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: character_model:chest
+    13700002: character_model:pelvis
+    13700004: Neck
+    13700006: pCube3
+    13700008: pCube3 1
+    13700010: pCylinder2
+    13700012: pCylinder2 1
+    13700014: pCylinder3
+    13700016: pCylinder3 1
+    13700018: pCylinder4
+    13700020: pCylinder4 1
+    13700022: pCylinder5
+    13700024: pCylinder5 1
+    13700026: pCylinder6
+    13700028: pSphere1
+    13700030: pSphere10
+    13700032: pSphere10 1
+    13700034: pSphere11
+    13700036: pSphere11 1
+    13700038: pSphere2
+    13700040: pSphere2 1
+    13700042: pSphere5
+    13700044: pSphere5 1
+    13700046: pSphere7
+    13700048: pSphere7 1
+    13700050: pSphere8
+    13700052: pSphere8 1
+    13700054: pSphere9
+    13700056: pSphere9 1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

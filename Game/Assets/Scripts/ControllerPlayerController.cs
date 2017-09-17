@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ControllerPlayerController : FFComponent {
+    public bool mFlareDropper = false;
+    public GameObject mFlarePrefab;
     public float timeOn = 1.0f;
     public float timeOff = 0.5f;
     public float testGrueVis = 0.0f;
@@ -28,7 +30,8 @@ public class ControllerPlayerController : FFComponent {
 	// Use this for initialization
 	void Start () {
         myRidigBody = GetComponent<Rigidbody>();
-        transform.Find("Light").GetComponent<Light>().intensity = 50 * 0.25f;
+        if(!mFlareDropper)
+            transform.Find("Light").GetComponent<Light>().intensity = 50 * 0.25f;
         stuffImDoing = action.Sequence();
         stuffImDoing.Call(CheckAButton);
         stuffImDoing.Sync();
@@ -48,8 +51,18 @@ public class ControllerPlayerController : FFComponent {
 
     void ChangeLightOn()
     {
-        mLightIsOn = true;
-        stuffImDoing.Property(LightValue(), 100, mLightCurve, timeOn);
+        if(!mFlareDropper)
+            mLightIsOn = true;
+
+        if (mFlareDropper)
+        {
+            GameObject flareInst = Instantiate<GameObject>(mFlarePrefab, transform.position + transform.forward * -2, Quaternion.identity);
+            stuffImDoing.Delay(timeOn);
+        }
+        else
+        {
+            stuffImDoing.Property(LightValue(), 100, mLightCurve, timeOn);
+        }
         stuffImDoing.Sync();
         stuffImDoing.Call(ChangeLightOff);
         stuffImDoing.Sync();
