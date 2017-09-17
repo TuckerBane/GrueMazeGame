@@ -26,6 +26,7 @@ public class LevelEditor : EditorWindow
 
     private void OnSceneGUI(SceneView sceneView)
     {
+        DrawGrid();
 
         Event cur = Event.current;
 
@@ -47,7 +48,7 @@ public class LevelEditor : EditorWindow
 
 
 
-        if (isMouse && buttonPressed == 0 && !Input.GetKey(KeyCode.J))
+        if (isMouse && buttonPressed == 0 && state == State.Draw)
         {
             //Debug.Log(sceneView.camera.transform.position);
             // Raycast, delete walls if its there
@@ -59,7 +60,7 @@ public class LevelEditor : EditorWindow
             if (Physics.Raycast(ray, out hit))
             {
                 hitSomething = true;
-                if (hit.collider.name == "Wall")
+                if (hit.collider.name.Contains("Wall"))
                 {
                     Debug.Log("Hit Wall");
                     wallPos = hit.collider.transform.position;
@@ -93,13 +94,13 @@ public class LevelEditor : EditorWindow
         }
 
         // right Mouse
-        if (isMouse && buttonPressed == 0 && Input.GetKey(KeyCode.J))
+        else if (isMouse && buttonPressed == 0 && state == State.Erase)
         {
-            Ray ray = Camera.main.ScreenPointToRay(mousePos);
+            Ray ray = sceneView.camera.ScreenPointToRay(mousePos);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                if(hit.collider.name == "Wall")
+                if(hit.collider.name.Contains("Wall"))
                 {
                     Undo.DestroyObjectImmediate(hit.collider.gameObject);
                 }
@@ -115,7 +116,19 @@ public class LevelEditor : EditorWindow
         //editorMoseuPos.editorMousePos = mousePos;
         //editorMoseuPos.editorMouseWorldPos = worldPos;
     }
+    
+    public enum State
+    {
+        Draw,
+        Erase,
+    }
+    State state;
+    private void OnGUI()
+    {
+        GUILayout.Label("Draw State", EditorStyles.boldLabel);
+        state = (State)EditorGUILayout.EnumPopup("Set Draw State", state);
 
+    }
 
     void UpdateMouse(Vector3 mouseScreenPos)
     {
@@ -133,6 +146,41 @@ public class LevelEditor : EditorWindow
         }
     }
     
+    void DrawGrid()
+    { // Grid Grid
+
+        // Horizontal
+        for (int i = 0; i < 100; ++i)
+        {
+            Debug.DrawLine(
+                new Vector3(
+                50.0f + (i * -1.0f),
+                0.0f,
+                -100.0f),
+
+                new Vector3(
+                50.0f + (i * -1.0f),
+                0.0f,
+                100.0f),
+                Color.cyan * 0.6f);
+        }
+
+        // Vertical
+        for (int j = 0; j < 100; ++j)
+        {
+            Debug.DrawLine(
+                new Vector3(
+                -100.0f,
+                0,
+                50.0f + (j * -1.0f)),
+
+                new Vector3(
+                100.0f,
+                0.0f,
+                50.0f + (j * -1.0f)),
+                Color.cyan * 0.6f);
+        }
+    }
 
     void PlaceWallAtMouse()
     {
