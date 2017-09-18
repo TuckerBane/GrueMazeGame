@@ -82,20 +82,25 @@ public class GrueMothership : FFComponent
         float lightLevel = FindObjectOfType<GlobalLightChecker>().GetTotalLightLevel(transform);
         if( (!mCrying && lightLevel >= 1.5f) || (!mCrying && mGoCryHackSwitch) )
         {
-            CustomDialogOn cd;
-            cd.tag = "ScareAway";
-            var box = FFMessageBoard<CustomDialogOn>.Box("ScareAway");
-            box.SendToLocal(cd);
-
             mCrying = true;
             mMyActionList.ClearSequence();
             GetComponent<ExPathFollower>().enabled = false;
             StartCoroutine("GoCry");
+
+            var text = "ScareAway";
+            var box = FFMessageBoard<CustomDialogOn>.Box((string)text);
+            CustomDialogOn cdo;
+            cdo.tag = (string)text;
+            box.SendToLocal(cdo);
         }
         else if( (mCrying && GameMath.DistanceBetween(this,mCryingPlace) <= 3.0f && lightLevel >= 2.5f ) || mBeCuredHackSwitch)
         {
-            var box = FFMessageBoard<CustomDialogOn>.Box("Rescue");
-            box.SendToLocal(new CustomDialogOn());
+            var text = "Rescue";
+            var box = FFMessageBoard<CustomDialogOn>.Box((string)text);
+            CustomDialogOn cdo;
+            cdo.tag = (string)text;
+            box.SendToLocal(cdo);
+
 
             // Become human?
             Destroy(this);
