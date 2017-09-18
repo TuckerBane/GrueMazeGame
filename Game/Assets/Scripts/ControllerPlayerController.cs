@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ControllerPlayerController : FFComponent {
+    public float startingIntc = 50 * 0.25f;
     public bool mFlareDropper = false;
     public GameObject mFlarePrefab;
     public float timeOn = 1.0f;
@@ -31,7 +32,7 @@ public class ControllerPlayerController : FFComponent {
 	void Start () {
         myRidigBody = GetComponent<Rigidbody>();
         if(!mFlareDropper)
-            transform.Find("Light").GetComponent<Light>().intensity = 50 * 0.25f;
+            transform.Find("Light").GetComponent<Light>().intensity = startingIntc;
         stuffImDoing = action.Sequence();
         stuffImDoing.Call(CheckAButton);
         stuffImDoing.Sync();
